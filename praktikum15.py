@@ -1,10 +1,14 @@
 import requests
+from dotenv import load_dotenv
+import os
 
-SERVER = "thingsboard.cloud"
-DEVICE_ID = "aa12aac0-3636-11f1-9c01-37a7c07792f2"
-API_KEY = "tb_jo4CPe1USWzaCf_gzcL3tXe4-SDVYQmGq8DBysrHeqAzRTDojtnf7kzlzCmITsfBGdKjzw1LLXHTkvfkdn4fyg"
+load_dotenv()
 
-url = f"https://{SERVER}/api/plugins/telemetry/DEVICE/{DEVICE_ID}/values/timeseries"
+THINGSBOARD_SERVER = os.getenv("THINGSBOARD_SERVER")
+DEVICE_ID = os.getenv("DEVICE_ID")
+API_KEY = os.getenv("API_KEY")
+
+url = f"https://{THINGSBOARD_SERVER}/api/plugins/telemetry/DEVICE/{DEVICE_ID}/values/timeseries"
 headers = {
     "X-Authorization": f"ApiKey {API_KEY}"
 }
